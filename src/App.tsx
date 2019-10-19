@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import debounce from 'lodash/debounce';
 import AsyncSelect from 'react-select/async';
-import Schedule from './Components/Schedule';
 import EnvVariables from './Components/EnvVariables'
 import axios from 'axios';
 import './App.css';
@@ -37,10 +36,12 @@ const App: React.FC = () => {
       resolve(result.filter(i => i.label.toLowerCase().includes(input.toLowerCase())));
     });
 
-  axios.get('https://localhost:5001/api/test').then(resp => {
-    setVars(resp.data);
-    console.log(vars);
-  });
+  useEffect(() => {
+    axios.get('https://localhost:5001/api/test').then(resp => {
+      setVars(resp.data);
+      console.log(vars);
+    })
+  }, []);
 
   return (
     <div className="App">
