@@ -6,3 +6,5 @@ RUN npm install
 
 COPY . ./
 RUN npm run build
+ENTRYPOINT tail -f /dev/null & wait
+# ENTRYPOINT ["/bin/bash"]
