@@ -21,8 +21,8 @@ const EnvVariables: React.FunctionComponent<Input> = (props) => {
             <table >
                 <caption>Таблица переменных</caption>
                 <tr>
-                    <th>Переменная</th>
-                    <th>Значение</th>
+                    <th>Переменная!!!</th>
+                    <th>Значение???EatIt???</th>
                 </tr>
                 {result}
             </table>

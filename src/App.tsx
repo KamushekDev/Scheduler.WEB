@@ -37,7 +37,7 @@ const App: React.FC = () => {
     });
 
   useEffect(() => {
-    axios.get('http://localhost:81/api/test').then(resp => {
+    axios.get('http://localhost/api/test').then(resp => {
       setVars(resp.data);
       console.log(vars);
     })
