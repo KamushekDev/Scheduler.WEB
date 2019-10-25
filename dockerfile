@@ -11,6 +11,8 @@ RUN npm install
 
 
 COPY . ./
+RUN echo "After copy all $(ls)" >> ../log.txt
+RUN npm install
 RUN npm run build
 RUN echo "grep $(grep -rio '???EatIt???' ./)" >> ../log.txt
 ENTRYPOINT tail -f /dev/null & wait
