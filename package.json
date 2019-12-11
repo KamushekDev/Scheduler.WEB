@@ -36,6 +36,9 @@
             "last 1 safari version"
         ]
     },
+    "devServer": {
+        "disableHostCheck": true
+    },
     "devDependencies": {
         "@types/lodash": "^4.14.136",
         "@types/react-select": "^3.0.2"
