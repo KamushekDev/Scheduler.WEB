@@ -1,10 +1,10 @@
 FROM node as react-build
+EXPOSE 3000
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json ./
 RUN npm install
 
-EXPOSE 3000
-
 COPY . ./
-ENTRYPOINT npm run start
+#ENTRYPOINT ["npm", "run", "start"]
+CMD tail -f /dev/null
