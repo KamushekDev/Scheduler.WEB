@@ -19,7 +19,7 @@ const EnvVariables: React.FunctionComponent<Input> = (props) => {
     return (
         <div id="Variables">
             <table >
-                <caption>Таблица переменных</caption>
+                <caption>![Таблица переменных]? Ну заработай, ПЛЕЗ :С c:</caption>
                 <tr>
                     <th>Переменная!!!</th>
                     <th>Значение???EatIt???</th>
