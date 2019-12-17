@@ -6,11 +6,8 @@ RUN npm install -g typescript
 EXPOSE 3000
 WORKDIR /develop/app
 
-COPY package.json ./
-COPY package-lock.json ./
-COPY tsconfig.json ./
+COPY *.json ./
 RUN npm install
 
-COPY . ./
 ENTRYPOINT ["npm", "start"]
 # CMD tail -f /dev/null
