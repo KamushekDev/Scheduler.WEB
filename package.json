@@ -12,7 +12,8 @@
         "react-dom": "^16.8.6",
         "react-scripts": "3.0.1",
         "react-select": "^3.0.4",
-        "typescript": "3.5.3"
+        "typescript": "3.5.3",
+        "axios": "^0.19.0"
     },
     "scripts": {
         "start": "react-scripts start",
@@ -34,6 +35,9 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devServer": {
+        "disableHostCheck": true
     },
     "devDependencies": {
         "@types/lodash": "^4.14.136",
