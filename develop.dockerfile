@@ -1,4 +1,4 @@
-FROM node as react-build
+FROM node:8 as react-build
 
 RUN npm install react-scripts -g --silent
 RUN npm install -g typescript
