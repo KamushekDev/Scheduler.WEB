@@ -3,7 +3,7 @@ import DaySchedule from './DaySchedule'
 import * as joda from '@js-joda/core'
 
 interface IScheduleParams {
-
+    days: IDayScheduleParams[]
 }
 
 interface IDayScheduleParams {
@@ -21,12 +21,13 @@ interface ILesson {
 }
 
 const Schedule = function name(params: IScheduleParams) {
+
+    let days = params.days.map(day => (<DaySchedule dayNumber={day.dayNumber} lessons={day.lessons} key={day.dayNumber} />));
+
     return (
-        <>
-            <DaySchedule dayNumber={1} lessons={[]} />
-            <DaySchedule dayNumber={2} lessons={[]} />
-            <DaySchedule dayNumber={3} lessons={[]} />
-        </>
+        <div className="Schedule">
+            {days}
+        </div>
     );
 }
 
