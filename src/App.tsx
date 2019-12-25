@@ -4,6 +4,7 @@ import AsyncSelect from 'react-select/async';
 import EnvVariables from './Components/EnvVariables'
 import axios from 'axios';
 import './App.css';
+import Schedule from './Components/Schedule';
 
 type option = { value: string, label: string, color: string, isFixed?: boolean, isDisabled?: undefined };
 
@@ -45,9 +46,9 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <div className="App-header">
-        <EnvVariables variables={vars} />
-        {/* <p>
+      {/* <EnvVariables variables={vars} /> */}
+      <Schedule />
+      {/* <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <a onClick={e => {
@@ -63,7 +64,6 @@ const App: React.FC = () => {
         </a>
         <AsyncSelect cacheOptions defaultOptions onChange={x => console.log(x)} loadOptions={promiseOptions} className="Selectich" /> */}
 
-      </div>
     </div>
   );
 }
