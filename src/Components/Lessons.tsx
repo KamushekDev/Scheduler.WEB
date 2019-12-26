@@ -18,7 +18,7 @@ interface ILesson {
 const Lessons = function name(params: ILessonsParams) {
 
     var lessons = params.lessons.map((item, index) => (
-        <div className="lesson" style={lessonStyle}>
+        <div className="lesson" style={lessonStyle} key={item.name}>
             <div className="LessonNumber" style={lessonNumberStyle}><p>{index + 1}</p></div>
             <div className="LessonTime" style={LessonTimeStyle}>
                 <p>

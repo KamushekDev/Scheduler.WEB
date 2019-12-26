@@ -1,24 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import DaySchedule from './DaySchedule'
-import * as joda from '@js-joda/core'
-
-interface IScheduleParams {
-    days: IDayScheduleParams[]
-}
-
-interface IDayScheduleParams {
-    dayNumber: number
-    lessons: ILesson[]
-}
-
-interface ILesson {
-    startTime: joda.LocalTime
-    endTime: joda.LocalTime
-    lessonType: string
-    name: string
-    teacher: string
-    room: string
-}
+import { IScheduleParams } from '../Contracts/ScheduleInterfaces'
 
 const Schedule = function name(params: IScheduleParams) {
 
