@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import DaySchedule from './DaySchedule'
 import joda from '@js-joda/core';
+import axios from 'axios'
 import _ from 'lodash';
 
 const Schedule = function (params: IScheduleParams) {
 
-    let [schedule, setSchedule] = useState<ILesson[]>();
+    let [schedule, setSchedule] = useState();
 
     useEffect(() => {
         //todo: Тут нужно запросить уроки с апишки
+        axios.get('getTimetable').then(x => setSchedule(x)).catch(console.log);
     }, params.groups)
 
     if (schedule == null) {
