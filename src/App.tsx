@@ -1,23 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import Schedule from './Components/Schedule';
-import CSS from 'csstype'
+import React, { useState, useEffect } from "react";
+import Schedule from "./Components/Schedule";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Link,
   useParams
-} from 'react-router-dom'
-import './App.css';
+} from "react-router-dom";
+import "./App.css";
 
 const App = () => {
   return (
-    <div className="App" style={topMenuStyle}>
+    <div className="App">
       <Router>
-        <div className="topMenu">
-          <Link to="/">Домашняя</Link>
-          <Link to="/schedule">Расписание</Link>
-          <Link to="/tasks">Задания</Link>
+        <div className="TopMenu">
+          <div className="MenuItem">
+            <Link to="/">Домашняя</Link>
+          </div>
+          <div className="MenuItem">
+            <Link to="/schedule">Расписание</Link>
+          </div>
+          <div className="MenuItem">
+            <Link to="/tasks">Задания</Link>
+          </div>
         </div>
         <Switch>
           <Route exact path="/">
@@ -33,10 +38,10 @@ const App = () => {
             <p>Тут будет полный список заданий</p>
           </Route>
         </Switch>
-      </Router >
-    </div >
+      </Router>
+    </div>
   );
-}
+};
 
 const Tasks = () => {
   let { id } = useParams();
@@ -45,10 +50,6 @@ const Tasks = () => {
       <p>Тут будет задание с id = {id}</p>
     </>
   );
-}
+};
 
 export default App;
-
-const topMenuStyle: CSS.Properties = {
-  display: 'block',
-};
