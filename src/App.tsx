@@ -4,13 +4,7 @@ import Tasks from "./Components/Tasks";
 import Task from "./Components/Task";
 import Auth from "./Components/Auth";
 import axios from "axios";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Link,
-  useParams
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import "./App.css";
 
