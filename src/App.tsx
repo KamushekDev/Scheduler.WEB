@@ -8,20 +8,20 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import "./App.css";
 
-const testText: string =
-  "Default text. Seams like request is going or failed with 401 :c";
+const defaultText: string = "Default text :D";
 
 const App = () => {
   let [token, setToken] = useState(localStorage.getItem("accessToken"));
-  let [test, setTest] = useState<string>(testText);
+  let [text, setText] = useState<string>(defaultText);
 
   useEffect(() => {
+    setText("Request is going...");
     axios
       .get("/api/test/5", {
         headers: { Authorization: "Bearer " + token }
       })
-      .then(response => setTest(response.data))
-      .catch(ex => setTest(testText));
+      .then(response => setText(response.data))
+      .catch(ex => setText("Error: " + ex.message));
   }, [token]);
 
   const setTokenFull = (value: string | null) => {
@@ -53,7 +53,7 @@ const App = () => {
             <Link to="/auth">{authLinkName}</Link>
           </div>
         </div>
-        <h4>{test}</h4>
+        <h4>{text}</h4>
         <div className="routerMain">
           <Switch>
             <Route exact path="/">
