@@ -1,4 +1,3 @@
-import * as joda from "@js-joda/core";
 import moment from "moment";
 
 export interface IClass {
@@ -20,4 +19,13 @@ export interface IUser {
   patronymic: string;
   phone: string;
   email: string;
+}
+
+export interface ITask {
+  id: number;
+  begin: moment.Moment;
+  end: moment.Moment;
+  taskName: string;
+  lessonName: string;
+  description: string | null;
 }

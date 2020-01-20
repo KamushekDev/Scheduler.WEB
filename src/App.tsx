@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ScheduleContainer from "./Components/Containers/ScheduleContainer";
-import Tasks from "./Components/Tasks";
+import TasksContainer from "./Components/Containers/TasksContainer";
+import ProfileContainer from "./Components/Containers/ProfileContainer";
 import Auth from "./Components/Auth";
 import {
   BrowserRouter as Router,
@@ -23,10 +24,10 @@ const App = () => {
     setToken(value);
   };
 
-  let authLinkName = "Вход";
+  let profileLink = <Link to="/auth">Вход</Link>;
 
   if (token) {
-    authLinkName = "Профиль";
+    profileLink = <Link to="/profile">Профиль</Link>;
   }
 
   return (
@@ -39,9 +40,7 @@ const App = () => {
           <div className="MenuItem">
             <Link to="/tasks">Задания</Link>
           </div>
-          <div className="MenuItem">
-            <Link to="/auth">{authLinkName}</Link>
-          </div>
+          <div className="MenuItem">{profileLink}</div>
         </div>
         <div className="routerMain">
           <Switch>
@@ -49,13 +48,16 @@ const App = () => {
               <Redirect to="/schedule" />
             </Route>
             <Route path="/schedule">
-              <ScheduleContainer />
+              <ScheduleContainer token={token} />
             </Route>
             <Route path="/tasks">
-              <Tasks />
+              <TasksContainer token={token} />
             </Route>
             <Route path="/auth/:accessToken?">
               <Auth token={token} setToken={setTokenFull} />
+            </Route>
+            <Route path="/profile">
+              <ProfileContainer token={token} setToken={setTokenFull} />
             </Route>
           </Switch>
         </div>

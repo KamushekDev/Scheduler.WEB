@@ -2,18 +2,9 @@ import React, { useState } from "react";
 import { Link, Redirect, useParams } from "react-router-dom";
 import axios from "axios";
 
-interface Props {
-  setToken: (token: string | null) => void;
-  token: string | null;
-}
-
 const Auth = (props: Props) => {
   const gitHub = (provider: string) => {
     window.location.href = "/api/auth/" + provider;
-  };
-
-  const logOut = () => {
-    props.setToken(null);
   };
 
   let { accessToken } = useParams();
@@ -35,14 +26,12 @@ const Auth = (props: Props) => {
   }
 
   //Пользователь авторизован
-
-  return (
-    <>
-      <h3>Token</h3>
-      <p>{props.token}</p>
-      <button onClick={logOut}>Log out</button>
-    </>
-  );
+  return <Redirect to="/" />;
 };
+
+interface Props {
+  setToken: (token: string | null) => void;
+  token: string | null;
+}
 
 export default Auth;

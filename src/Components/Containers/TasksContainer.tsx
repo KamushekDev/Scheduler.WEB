@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { ITask } from "../../Contracts/Interfaces";
 import axios from "axios";
-import Schedule from "../Schedule";
-import _ from "lodash";
-import { IClass } from "../../Contracts/Interfaces";
+import Tasks from "../Tasks";
 import { Redirect } from "react-router-dom";
 
-const ScheduleContainer = function(props: Props) {
-  let [schedule, setSchedule] = useState<IClass[] | null>(null);
+const TasksContainer = (props: Props) => {
+  let [tasks, setTasks] = useState<ITask[] | null>(null);
   let [erorrCode, setErrorCode] = useState<number | null>(null);
 
   useEffect(() => {
     axios
-      .get<IClass[]>("api/Schedule", {
+      .get<ITask[]>("api/Task", {
         headers: { Authorization: "Bearer " + props.token }
       })
-      .then(x => setSchedule(x.data))
+      .then(x => setTasks(x.data))
       .catch(x => {
         console.log(JSON.stringify(x.response));
         setErrorCode(x.response.status);
@@ -23,11 +22,11 @@ const ScheduleContainer = function(props: Props) {
 
   if (!props.token) return <Redirect to="/auth" />;
 
-  return <Schedule classes={schedule} errorCode={erorrCode} />;
+  return <Tasks tasks={tasks} errorCode={erorrCode} />;
 };
 
 interface Props {
   token: string | null;
 }
 
-export default ScheduleContainer;
+export default TasksContainer;
