@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 
-const DaySchedule = (props: Props) => {
+const DayScheduleContainer = (props: Props) => {
   let dayName = getDayName(props.dayNumber);
 
   let classes = props.lessons.map(mapLesson);
@@ -65,4 +65,4 @@ interface IUser {
   email: string;
 }
 
-export default DaySchedule;
+export default DayScheduleContainer;

@@ -1,59 +1,63 @@
-import React, { useState, useEffect } from 'react'
-import DaySchedule from './DaySchedule'
-import joda from '@js-joda/core';
-import axios from 'axios'
-import _ from 'lodash';
+import React, { useState, useEffect } from "react";
+import _ from "lodash";
+import DayScheduleContainer from "./Containers/DayScheduleContainer";
+import moment from "moment";
 
-const Schedule = function (params: IScheduleParams) {
+const Schedule = function(params: Props) {
+  let schedule = params.classes;
+  if (schedule == null) {
+    return <p>Schedule is loading...</p>;
+  }
 
-    let [schedule, setSchedule] = useState();
+  let days: Map<number, IClass[]> = new Map<number, IClass[]>();
 
-    useEffect(() => {
-        //todo: Тут нужно запросить уроки с апишки
-        axios.get('getTimetable').then(x => setSchedule(x)).catch(console.log);
-    }, params.groups)
+  schedule.forEach(c => {
+    let day = days.get(c.dayNumber);
+    if (day) {
+      days.set(c.dayNumber, [...day, c]);
+    } else days.set(c.dayNumber, [c]);
+  });
 
-    if (schedule == null) {
-        return (
-            <>
-                <p>Schedule is loading...</p>
-            </>
-        );
-    }
-
-    let days = _.groupBy(schedule, sc => sc.dayNumber);
-
-    let daySchedules = new Array();
-
-    for (let index = 1; index <= 7; index++) {
-        const day = (<DaySchedule dayNumber={index} lessons={days[index]} key={index}/>);
-        daySchedules = [...daySchedules, day];
-    }
-
-    return (
-        <div className="Schedule">
-            {days}
-        </div>
+  let daySchedules: JSX.Element[] = [];
+  for (let day of days) {
+    let daySchedule = (
+      <DayScheduleContainer dayNumber={day[0]} lessons={day[1]} key={day[0]} />
     );
+    daySchedules.push(daySchedule);
+  }
+
+  return (
+    <div className="Schedule">
+      {daySchedules.sort((a, b) =>
+        a.props.dayNumber > b.props.dayNumber ? 1 : -1
+      )}
+    </div>
+  );
+};
+
+type Props = {
+  classes: IClass[] | null;
+};
+
+interface IClass {
+  id: number;
+  lessonName: string;
+  roomName: string;
+  startTime: moment.Moment;
+  duration: number;
+  classTypeName: string;
+  groupName: string;
+  teacher: IUser;
+  weekType: string;
+  dayNumber: number;
 }
 
-type IScheduleParams = {
-    groups: string[]
-}
-
-type IDayScheduleParams = {
-    dayNumber: number
-    lessons: ILesson[]
-}
-
-type ILesson = {
-    dayNumber: number
-    startTime: joda.LocalTime
-    endTime: joda.LocalTime
-    lessonType: string
-    name: string
-    teacher: string
-    room: string
+interface IUser {
+  name: string;
+  surname: string;
+  patronymic: string;
+  phone: string;
+  email: string;
 }
 
 export default Schedule;

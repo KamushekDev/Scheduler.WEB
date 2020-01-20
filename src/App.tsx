@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Schedule from "./Components/Schedule";
+import ScheduleContainer from "./Components/Containers/ScheduleContainer";
 import Tasks from "./Components/Tasks";
 import Task from "./Components/Task";
 import Auth from "./Components/Auth";
@@ -60,7 +60,7 @@ const App = () => {
               <p>Тут типа текст стандартного пути</p>
             </Route>
             <Route path="/schedule">
-              <Schedule groups={["6374"]} />
+              <ScheduleContainer />
             </Route>
             <Route path="/tasks/:id">
               <Task />
