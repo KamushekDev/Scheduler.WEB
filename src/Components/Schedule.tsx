@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import _ from "lodash";
 import DayScheduleContainer from "./Containers/DayScheduleContainer";
-import moment from "moment";
+import { IClass } from "../Contracts/Interfaces";
 
-const Schedule = function(params: Props) {
-  let schedule = params.classes;
+const Schedule = function(props: Props) {
+  let schedule = props.classes;
+
+  if (props.errorCode)
+    return <p>Request failed with status code: {props.errorCode}</p>;
+
   if (schedule == null) {
     return <p>Schedule is loading...</p>;
   }
@@ -37,27 +41,7 @@ const Schedule = function(params: Props) {
 
 type Props = {
   classes: IClass[] | null;
+  errorCode: number | null;
 };
-
-interface IClass {
-  id: number;
-  lessonName: string;
-  roomName: string;
-  startTime: moment.Moment;
-  duration: number;
-  classTypeName: string;
-  groupName: string;
-  teacher: IUser;
-  weekType: string;
-  dayNumber: number;
-}
-
-interface IUser {
-  name: string;
-  surname: string;
-  patronymic: string;
-  phone: string;
-  email: string;
-}
 
 export default Schedule;

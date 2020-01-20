@@ -1,49 +1,24 @@
 import React, { useState, useEffect } from "react";
-import * as moment from "moment";
 import axios from "axios";
 import Schedule from "../Schedule";
 import _ from "lodash";
+import { IClass } from "../../Contracts/Interfaces";
 
 const ScheduleContainer = function() {
   let [schedule, setSchedule] = useState<IClass[] | null>(null);
+  let [erorrCode, setErrorCode] = useState<number | null>(null);
 
   useEffect(() => {
     axios
       .get<IClass[]>("api/Schedule")
       .then(x => setSchedule(x.data))
-      .catch(console.log);
+      .catch(x => {
+        console.log(JSON.stringify(x.response));
+        setErrorCode(x.response.status);
+      });
   }, []);
 
-  return <Schedule classes={schedule} />;
+  return <Schedule classes={schedule} errorCode={erorrCode} />;
 };
-
-interface IClass {
-  id: number;
-  lessonName: string;
-  roomName: string;
-  startTime: moment.Moment;
-  duration: number;
-  classTypeName: string;
-  groupName: string;
-  teacher: IUser;
-  weekType: string;
-  dayNumber: number;
-}
-
-interface IUser {
-  name: string;
-  surname: string;
-  patronymic: string;
-  phone: string;
-  email: string;
-}
-
-interface IUser {
-  Name: string;
-  Surname: string;
-  Patronymic: string;
-  Phone: string;
-  Email: string;
-}
 
 export default ScheduleContainer;

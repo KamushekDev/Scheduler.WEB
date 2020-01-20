@@ -1,5 +1,5 @@
 import React from "react";
-import moment from "moment";
+import { IClass } from "../Contracts/Interfaces";
 
 const DaySchedule = (props: Props) => {
   let dayName = getDayName(props.dayNumber);
@@ -44,25 +44,6 @@ const getDayName = (dayNumber: number) => {
 interface Props {
   dayNumber: number;
   lessons: IClass[];
-}
-interface IClass {
-  id: number;
-  lessonName: string;
-  roomName: string;
-  startTime: moment.Moment;
-  duration: number;
-  classTypeName: string;
-  groupName: string;
-  teacher: IUser;
-  weekType: string;
-  dayNumber: number;
-}
-interface IUser {
-  name: string;
-  surname: string;
-  patronymic: string;
-  phone: string;
-  email: string;
 }
 
 export default DaySchedule;
