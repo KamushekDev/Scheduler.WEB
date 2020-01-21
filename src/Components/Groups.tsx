@@ -27,8 +27,7 @@ const Groups = (props: Props) => {
   };
 
   const onGroupChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.currentTarget.value);
-    setGroup(event.target.value);
+    setGroup(event.currentTarget.value);
   };
 
   let [file, setFile] = useState();
@@ -41,10 +40,11 @@ const Groups = (props: Props) => {
     return <p>Группы загружается..</p>;
   }
 
-  if (props.groups.length == 0)
-    return <p>Нет публичных групп, в которые можно вступить :c</p>;
+  let groups = null;
 
-  let groups = props.groups.map(mapGroups);
+  if (props.groups.length == 0)
+    groups = <p>Нет публичных групп, в которые можно вступить :c</p>;
+  else groups = props.groups.map(mapGroups);
 
   return (
     <>

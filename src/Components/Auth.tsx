@@ -11,8 +11,9 @@ const Auth = (props: Props) => {
 
   if (accessToken) {
     //Если пришёл токен
-    props.setToken(accessToken);
-    return <Redirect to="/auth" />;
+    if (accessToken === "clr") props.setToken(null);
+    else props.setToken(accessToken);
+    return <Redirect to="/profile" />;
   }
 
   if (!props.token) {

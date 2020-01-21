@@ -16,6 +16,7 @@ const DaySchedule = (props: Props) => {
 const mapLesson = (l: IClass) => {
   return (
     <div className="Lesson" key={l.id}>
+      <p>Id: {l.id}</p>
       <p>Название: {l.lessonName}</p>
       <p>Тип: {l.classTypeName}</p>
       <p>Аудитория: {l.roomName}</p>
