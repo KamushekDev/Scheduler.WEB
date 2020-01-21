@@ -1,5 +1,6 @@
 import React from "react";
-import { IUser } from "../Contracts/Interfaces";
+import { IUser, IGroup } from "../Contracts/Interfaces";
+import UserGroupsContainer from "./Containers/UserGroupsContainer";
 
 const Profile = (props: Props) => {
   if (props.errorCode)
@@ -51,6 +52,8 @@ const Profile = (props: Props) => {
         <input type="submit" value="Изменить" />
       </form>
       <button onClick={props.logOut}>Выйти</button>
+      <br />
+      <UserGroupsContainer token={props.token} />
     </>
   );
 };
@@ -61,6 +64,7 @@ interface Props {
   setUser: (user: IUser) => void;
   user: IUser | null;
   errorCode: number | null;
+  token: string | null;
 }
 
 export default Profile;

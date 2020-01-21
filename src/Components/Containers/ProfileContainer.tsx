@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { IUser } from "../../Contracts/Interfaces";
+import { IUser, IGroup } from "../../Contracts/Interfaces";
 import Profile from "../Profile";
 import axios from "axios";
 
@@ -19,11 +19,15 @@ const ProfileContainer = (props: Props) => {
         "Content-Type": "application/json"
       },
       data: { name: user.name, surname: user.surname }
-    }).catch(console.log);
+    })
+      .then(x => setGeneration(generation + 1))
+      .catch(console.log);
   };
 
   let [user, setUser] = useState<IUser | null>(null);
   let [errorCode, setErrorCode] = useState<number | null>(null);
+  let [generation, setGeneration] = useState<number>(0);
+  let [userGroups, setUserGroups] = useState<IGroup[] | null>(null);
 
   useEffect(() => {
     axios
@@ -35,7 +39,9 @@ const ProfileContainer = (props: Props) => {
         console.log(JSON.stringify(x.response));
         setErrorCode(x.response.status);
       });
-  }, []);
+  }, [generation]);
+
+  useEffect(() => {}, []);
 
   if (!props.token) return <Redirect to="/auth" />;
 
@@ -46,6 +52,7 @@ const ProfileContainer = (props: Props) => {
       logOut={logOut}
       user={user}
       errorCode={errorCode}
+      token={props.token}
     />
   );
 };

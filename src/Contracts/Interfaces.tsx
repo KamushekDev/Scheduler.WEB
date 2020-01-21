@@ -31,4 +31,8 @@ export interface ITask {
   description: string | null;
 }
 
-export interface IGroup {}
+export interface IGroup {
+  id: number;
+  name: string;
+  inviteLink: string;
+}

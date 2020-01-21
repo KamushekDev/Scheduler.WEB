@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ScheduleContainer from "./Components/Containers/ScheduleContainer";
 import TasksContainer from "./Components/Containers/TasksContainer";
+import GroupsContainer from "./Components/Containers/GroupsContainer";
 import ProfileContainer from "./Components/Containers/ProfileContainer";
 import Auth from "./Components/Auth";
 import {
@@ -57,7 +58,7 @@ const App = () => {
               <TasksContainer token={token} />
             </Route>
             <Route path="/groups">
-              <TasksContainer token={token} />
+              <GroupsContainer token={token} />
             </Route>
             <Route path="/auth/:accessToken?">
               <Auth token={token} setToken={setTokenFull} />

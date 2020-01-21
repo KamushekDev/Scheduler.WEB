@@ -7,7 +7,7 @@ const DaySchedule = (props: Props) => {
 
   return (
     <div className="Day">
-      <h3>{props.dayName}</h3>
+      <h1>{props.dayName}</h1>
       <div className="Lessons">{classes}</div>
     </div>
   );
