@@ -40,6 +40,9 @@ const App = () => {
           <div className="MenuItem">
             <Link to="/tasks">Задания</Link>
           </div>
+          <div className="MenuItem">
+            <Link to="/groups">Группы</Link>
+          </div>
           <div className="MenuItem">{profileLink}</div>
         </div>
         <div className="routerMain">
@@ -51,6 +54,9 @@ const App = () => {
               <ScheduleContainer token={token} />
             </Route>
             <Route path="/tasks">
+              <TasksContainer token={token} />
+            </Route>
+            <Route path="/groups">
               <TasksContainer token={token} />
             </Route>
             <Route path="/auth/:accessToken?">

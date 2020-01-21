@@ -30,3 +30,5 @@ export interface ITask {
   lessonName: string;
   description: string | null;
 }
+
+export interface IGroup {}

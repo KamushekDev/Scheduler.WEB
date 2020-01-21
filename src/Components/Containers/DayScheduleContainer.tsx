@@ -1,25 +1,13 @@
 import React from "react";
 import { IClass } from "../../Contracts/Interfaces";
+import DaySchedule from "../DaySchedule";
 
 const DayScheduleContainer = (props: Props) => {
   let dayName = getDayName(props.dayNumber);
 
-  let classes = props.lessons.map(mapLesson);
+  if (!dayName) return null;
 
-  return (
-    <div className="Day">
-      <h3>{dayName}</h3>
-      <div className="Lessons">{classes}</div>
-    </div>
-  );
-};
-
-const mapLesson = (l: IClass) => {
-  return (
-    <div className="Title" key={l.id}>
-      <p>{l.lessonName}</p>
-    </div>
-  );
+  return <DaySchedule dayName={dayName} lessons={props.lessons} />;
 };
 
 const getDayName = (dayNumber: number) => {

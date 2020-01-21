@@ -1,14 +1,13 @@
 import React from "react";
 import { IClass } from "../Contracts/Interfaces";
+import "../css/styles.css";
 
 const DaySchedule = (props: Props) => {
-  let dayName = getDayName(props.dayNumber);
-
   let classes = props.lessons.map(mapLesson);
 
   return (
     <div className="Day">
-      <h3>{dayName}</h3>
+      <h3>{props.dayName}</h3>
       <div className="Lessons">{classes}</div>
     </div>
   );
@@ -16,33 +15,21 @@ const DaySchedule = (props: Props) => {
 
 const mapLesson = (l: IClass) => {
   return (
-    <div className="Title" key={l.id}>
-      <p>{l.lessonName}</p>
+    <div className="Lesson" key={l.id}>
+      <p>Название: {l.lessonName}</p>
+      <p>Тип: {l.classTypeName}</p>
+      <p>Аудитория: {l.roomName}</p>
+      <p>Начало: {l.startTime}</p>
+      <p>Продолжительность: {l.duration} минут</p>
+      <p>Учитель: {l.teacher ? l.teacher.surname : ""}</p>
+      <p>Тип недели: {l.weekType}</p>
+      <p>Группа: {l.groupName}</p>
     </div>
   );
 };
 
-const getDayName = (dayNumber: number) => {
-  switch (dayNumber) {
-    case 1:
-      return "Понедельник";
-    case 2:
-      return "Вторник";
-    case 3:
-      return "Среда";
-    case 4:
-      return "Четверг";
-    case 5:
-      return "Пятница";
-    case 6:
-      return "Суббота";
-    case 7:
-      return "Воскресенье";
-  }
-};
-
 interface Props {
-  dayNumber: number;
+  dayName: string;
   lessons: IClass[];
 }
 

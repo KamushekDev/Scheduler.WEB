@@ -10,7 +10,7 @@ const TasksContainer = (props: Props) => {
 
   useEffect(() => {
     axios
-      .get<ITask[]>("api/Task", {
+      .get<ITask[]>("api/Tasks", {
         headers: { Authorization: "Bearer " + props.token }
       })
       .then(x => setTasks(x.data))

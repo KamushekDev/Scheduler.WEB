@@ -13,7 +13,7 @@ const ProfileContainer = (props: Props) => {
     if (user == null) return;
     axios({
       method: "post",
-      url: "/api/user/" + user.id,
+      url: "/api/users/" + user.id,
       headers: {
         Authorization: "Bearer " + props.token,
         "Content-Type": "application/json"
@@ -27,7 +27,7 @@ const ProfileContainer = (props: Props) => {
 
   useEffect(() => {
     axios
-      .get<IUser>("/api/User/me", {
+      .get<IUser>("/api/Users/me", {
         headers: { Authorization: "Bearer " + props.token }
       })
       .then(x => setUser(x.data))
