@@ -3,11 +3,13 @@ import { ITask } from "../Contracts/Interfaces";
 
 const Tasks = (props: Props) => {
   if (props.errorCode)
-    return <p>Request failed with status code: {props.errorCode}</p>;
+    return <p>Запрос завершился с кодом ошибки: {props.errorCode}</p>;
 
   if (props.tasks == null) {
-    return <p>Tasks are loading...</p>;
+    return <p>Задания загружаются...</p>;
   }
+
+  if (props.tasks.length == 0) return <p>У вас нет заданий.</p>;
 
   let tasks = props.tasks.map(x => <Task key={x.id} task={x} />);
 

@@ -20,7 +20,7 @@ const Auth = (props: Props) => {
     return (
       <>
         {/* <button onClick={() => gitHub("github")}>Auth via GitHub</button> */}
-        <button onClick={() => gitHub("vk")}>Auth via VKontakte</button>
+        <button onClick={() => gitHub("vk")}>Авторизоваться через VK</button>
       </>
     );
   }

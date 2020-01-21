@@ -8,17 +8,18 @@ export interface IClass {
   duration: number;
   classTypeName: string;
   groupName: string;
-  teacher: IUser;
+  teacher: IUser | null;
   weekType: string;
   dayNumber: number;
 }
 
 export interface IUser {
+  id: number;
   name: string;
   surname: string;
-  patronymic: string;
-  phone: string;
-  email: string;
+  patronymic: string | null;
+  phone: string | null;
+  email: string | null;
 }
 
 export interface ITask {

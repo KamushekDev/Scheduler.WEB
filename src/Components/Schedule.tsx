@@ -7,11 +7,13 @@ const Schedule = function(props: Props) {
   let schedule = props.classes;
 
   if (props.errorCode)
-    return <p>Request failed with status code: {props.errorCode}</p>;
+    return <p>Запрос завершился с кодом ошибки: {props.errorCode}</p>;
 
   if (schedule == null) {
-    return <p>Schedule is loading...</p>;
+    return <p>Расписание загружается..</p>;
   }
+
+  if (schedule.length == 0) return <p>В вашем расписании ничего нет :c</p>;
 
   let days: Map<number, IClass[]> = new Map<number, IClass[]>();
 
